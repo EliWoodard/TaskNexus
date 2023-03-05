@@ -1,0 +1,110 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif; }
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px; }
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end; }
+
+nav li {
+  margin: 0 10px; }
+
+nav a {
+  color: #fff;
+  text-decoration: none; }
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background-color: #f0f0f0; }
+
+.wrapper {
+  position: relative;
+  height: 100vh;
+  width: 100%; }
+
+.column-home {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 4%;
+  height: 100%;
+  background-color: #333;
+  color: #fff;
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  z-index: 2;
+  /* add this property to place the home column in front of the others */ }
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 100%;
+  width: 96%;
+  margin-left: 4%; }
+
+.column-courses, .column-tasks {
+  background-color: #fff;
+  padding: 0;
+  position: relative; }
+
+.column-courses {
+  width: 30%; }
+
+.column-tasks {
+  width: 70%; }
+
+.column-top {
+  height: 10%;
+  margin-bottom: 20px; }
+
+.column-bottom {
+  height: 90%; }
+
+.column-1 {
+  left: 0; }
+
+.column-2 {
+  right: 0; }
+
+.column-bottom {
+  height: 90%;
+  border-top: 1px solid #ccc; }
+
+.column-courses::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background-color: #ccc; }
+
+.column-tasks::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background-color: #ccc;
+  margin-left: -1px;
+  /* To make the line align with the right edge of .column-courses */ }
