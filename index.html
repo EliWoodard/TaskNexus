@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>TaskNexus</title>
   <link rel="stylesheet" href="css/styles.css">
+  <script src="script.js" defer></script> <!-- Add this line -->
 </head>
 
 <body>
@@ -12,8 +13,9 @@
   <main>
     <div class="wrapper">
       <div class="column-home">
-        <!-- add content for the home column -->
-        <p>Home</p>
+        <div class="home-content">
+          <p class="home-text">Home</p> <!-- Add class to the Home text -->
+        </div>
       </div>
       <div class="container">
         <div class="column-courses column">
@@ -30,6 +32,7 @@
             <!-- add content for the top portion of the tasks column -->
             <p>Tasks</p>
           </div>
+          <button class="add-btn">+ New task</button>
           <div class="column-bottom">
             <!-- add content for the bottom portion of the tasks column -->
           </div>
@@ -37,6 +40,15 @@
       </div>
     </div>
   </main>
+
+  <div id="input-panel" class="input-panel hidden">
+    <!-- Add input panel -->
+    <h2>Enter Task Details</h2>
+    <form id="task-form">
+      <input type="text" id="task-info" placeholder="Enter task information">
+      <button type="submit">Submit</button>
+    </form>
+  </div>
 
 </body>
 

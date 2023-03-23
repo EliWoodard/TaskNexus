@@ -1,3 +1,17 @@
+.home-content {
+  align-items: center;
+  height: 100%;
+  width: 100%; }
+
+.home-text {
+  height: 10%;
+  font-size: 1vw;
+  font-weight: bold;
+  margin-top: 10px;
+  /* Add some margin to position the text away from the top edge */
+  text-align: center;
+  /* Center the text within its box */ }
+
 * {
   box-sizing: border-box; }
 
@@ -32,6 +46,86 @@ main {
   min-height: 100vh;
   background-color: #f0f0f0; }
 
+.add-btn {
+  width: auto;
+  /* Make the button size dynamic */
+  height: auto;
+  color: white;
+  padding: 5px 10px;
+  background: #087358;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem; }
+
+.add-btn-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+
+.add-btn:active {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22), 0 1px 2px rgba(0, 0, 0, 0.34);
+  /* Add a larger shadow */
+  transform: translateY(1px);
+  /* Move the button down a bit */ }
+
+.add-btn:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.22);
+  /* Add a subtle shadow */ }
+
+.spin {
+  animation: spin 0.5s linear infinite; }
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg); } }
+
+.pulse {
+  animation: pulse 0.3s; }
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1); }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); } }
+
+.input-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 3; }
+
+.input-panel.hidden {
+  display: none; }
+
+.task-box {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 10px 0;
+  position: relative; }
+
+/* Style delete button */
+.delete-btn {
+  background-color: transparent;
+  border: none;
+  color: #ccc;
+  font-size: 14px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  outline: none; }
+
 .wrapper {
   position: relative;
   height: 100vh;
@@ -45,13 +139,14 @@ main {
   height: 100%;
   background-color: #333;
   color: #fff;
-  font-size: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 20px;
+  justify-content: flex-start;
+  /* Align content to the top of the column */
+  padding: 5px;
   z-index: 2;
-  /* add this property to place the home column in front of the others */ }
+  /* add this property to place the home column in front of the others */
+  align-items: center; }
 
 .container {
   display: flex;
@@ -73,8 +168,10 @@ main {
   width: 70%; }
 
 .column-top {
-  height: 10%;
-  margin-bottom: 20px; }
+  display: flex;
+  flex-direction: column;
+  font-size: 1vw;
+  margin: 5px; }
 
 .column-bottom {
   height: 90%; }
