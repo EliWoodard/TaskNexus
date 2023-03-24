@@ -3,14 +3,10 @@
   height: 100%;
   width: 100%; }
 
-.home-text {
-  height: 10%;
-  font-size: 1vw;
-  font-weight: bold;
-  margin-top: 10px;
-  /* Add some margin to position the text away from the top edge */
-  text-align: center;
-  /* Center the text within its box */ }
+.home-content img {
+  width: 100%;
+  object-fit: contain;
+  /* This ensures that the image retains its aspect ratio */ }
 
 * {
   box-sizing: border-box; }
@@ -77,10 +73,6 @@ main {
 .spin {
   animation: spin 0.5s linear infinite; }
 
-@keyframes spin {
-  100% {
-    transform: rotate(360deg); } }
-
 .pulse {
   animation: pulse 0.3s; }
 
@@ -92,37 +84,127 @@ main {
   100% {
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); } }
 
+.task-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 8px;
+  width: 250px;
+  height: 100px;
+  margin: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  position: relative; }
+
+.task-box.hidden {
+  display: none; }
+
+.task-box h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px; }
+
+.task-box p {
+  margin: 0; }
+
+.task-box .task-subject {
+  margin-top: 8px;
+  font-weight: bold; }
+
+.task-box .task-due-date {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 12px;
+  color: #777; }
+
+.task-box .task-description {
+  display: none; }
+
+.task-box.active .task-description {
+  display: block; }
+
+.task-box.active {
+  height: 200px; }
+
 .input-panel {
+  width: 20vw;
+  min-width: 360px;
+  min-height: 360px;
+  height: 20vw;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
+  padding: 1.051vw;
+  border-radius: 0.263vw;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  z-index: 3; }
+  z-index: 3;
+  display: flex;
+  flex-direction: column; }
 
 .input-panel.hidden {
   display: none; }
 
-.task-box {
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 10px;
-  margin: 10px 0;
-  position: relative; }
+.input-panel-section {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  margin-bottom: 1.051vw; }
 
-/* Style delete button */
-.delete-btn {
+.input-panel-section > * {
+  flex-basis: 50%;
+  max-width: calc(50% - 1.051vw);
+  /* take into account the padding */ }
+
+.form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+.form-group > * {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.263vw;
+  font-size: 0.841vw;
+  border: 1px solid #ccc;
+  border-radius: 0.263vw;
+  resize: none; }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1vw; }
+
+.form-group > textarea {
+  height: calc(100% - 0.526vw);
+  font-family: sans-serif; }
+
+#submit-btn {
+  height: 100%;
+  padding: 0.525vw 1.051vw;
+  background-color: #0077cc;
+  color: #fff;
+  border: none;
+  border-radius: 0.263vw;
+  cursor: pointer;
+  font-size: 0.841vw; }
+
+#submit-btn:hover {
+  background-color: #005fa3; }
+
+#close-btn {
   background-color: transparent;
   border: none;
   color: #ccc;
-  font-size: 14px;
-  position: absolute;
-  top: 5px;
-  right: 5px;
+  font-size: 1.051vw;
   cursor: pointer;
   outline: none; }
 
@@ -143,7 +225,6 @@ main {
   flex-direction: column;
   justify-content: flex-start;
   /* Align content to the top of the column */
-  padding: 5px;
   z-index: 2;
   /* add this property to place the home column in front of the others */
   align-items: center; }
@@ -170,7 +251,8 @@ main {
 .column-top {
   display: flex;
   flex-direction: column;
-  font-size: 1vw;
+  font-size: 1.3vw;
+  font-weight: bold;
   margin: 5px; }
 
 .column-bottom {
@@ -184,6 +266,7 @@ main {
 
 .column-bottom {
   height: 90%;
+  padding: 1vw;
   border-top: 1px solid #ccc; }
 
 .column-courses::before {

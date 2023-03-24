@@ -3,38 +3,35 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>TaskNexus</title>
+  <title>Dashboard - TaskNexus</title>
   <link rel="stylesheet" href="css/styles.css">
-  <script src="script.js" defer></script> <!-- Add this line -->
+  <link rel="icon" type="Images/Logo.png" href="Images/Logo.png">
+  <script src="Javascripts/script.js" defer></script>
+  <script src="Javascripts/submitScript.js" defer></script>
 </head>
 
 <body>
-
   <main>
     <div class="wrapper">
       <div class="column-home">
         <div class="home-content">
-          <p class="home-text">Home</p> <!-- Add class to the Home text -->
+          <img src="Images\Logo.png" alt="TaskNexus Logo">
         </div>
       </div>
       <div class="container">
         <div class="column-courses column">
           <div class="column-top">
-            <!-- add content for the top portion of the courses column -->
             <p>Courses</p>
           </div>
           <div class="column-bottom">
-            <!-- add content for the bottom portion of the courses column -->
           </div>
         </div>
         <div class="column-tasks column">
           <div class="column-top">
-            <!-- add content for the top portion of the tasks column -->
             <p>Tasks</p>
           </div>
           <button class="add-btn">+ New task</button>
           <div class="column-bottom">
-            <!-- add content for the bottom portion of the tasks column -->
           </div>
         </div>
       </div>
@@ -42,14 +39,45 @@
   </main>
 
   <div id="input-panel" class="input-panel hidden">
-    <!-- Add input panel -->
-    <h2>Enter Task Details</h2>
-    <form id="task-form">
-      <input type="text" id="task-info" placeholder="Enter task information">
-      <button type="submit">Submit</button>
-    </form>
+    <div class="header">
+      <h2>New Task</h2>
+      <button id="close-btn">X</button>
+    </div>
+    <div class="input-panel-section">
+      <div class="input-panel-section-top-left">
+        <h3>Subject:</h3>
+        <div class="form-group">
+          <input type="text" id="subject" placeholder="Enter subject">
+        </div>
+      </div>
+      <div class="input-panel-section-top-right">
+        <h3>Title:</h3>
+        <div class="form-group">
+          <input type="text" id="title" placeholder="Enter title">
+        </div>
+      </div>
+      <div class="input-panel-section-bottom-left">
+        <h3>Due Date:</h3>
+        <div class="form-group">
+          <input type="date" id="due-date">
+        </div>
+      </div>
+      <div class="input-panel-section-bottom-right">
+        <h3>Description:</h3>
+        <div class="form-group">
+          <textarea id="description" placeholder="Enter task description"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="input-panel-bottom">
+      <form id="task-form">
+        <button id="submit-btn" type="submit">Submit</button>
+      </form>
+    </div>
   </div>
 
+  <div class="task-list">
+  </div>
 </body>
 
 </html>
