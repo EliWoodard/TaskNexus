@@ -4,16 +4,41 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeBtn = document.getElementById("close-btn");
   const taskForm = document.getElementById("task-form");
 
+  const currentDate = new Date();
+
+  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+  const dayOfWeek = daysOfWeek[currentDate.getDay()];
+  const month = monthsOfYear[currentDate.getMonth()];
+  const dayOfMonth = currentDate.getDate();
+
+  const formattedDate = `${dayOfWeek}, ${month} ${dayOfMonth}`;
+
+  const currentDateElem = document.getElementById("current-date");
+  currentDateElem.innerText = formattedDate;
+
   addButton.addEventListener("click", () => {
+    var overlay = document.createElement('div');
+    overlay.className = 'overlay';
+    document.body.appendChild(overlay);
+    overlay.style.display = 'block';
+
     inputPanel.classList.remove("hidden");
   });
 
   closeBtn.addEventListener("click", () => {
     inputPanel.classList.add("hidden");
+
+    var overlay = document.querySelector('.overlay');
+    overlay.parentNode.removeChild(overlay);
   });
 
   taskForm.addEventListener("submit", (event) => {
     event.preventDefault();
+
+    var overlay = document.querySelector('.overlay');
+    overlay.parentNode.removeChild(overlay);
 
     const title = document.getElementById("title").value;
     const subject = document.getElementById("subject").value;
@@ -25,24 +50,34 @@ document.addEventListener("DOMContentLoaded", () => {
     const newTask = document.createElement("div");
     newTask.classList.add("task-item");
 
-    // Create the task info element (the button)
-    const taskInfo = document.createElement("button");
-    taskInfo.classList.add("task-info");
+    // Add event listener to task item to toggle task panel visibility
+    newTask.addEventListener("click", () => {
+      if (taskPanel.style.display === "none") {
+        taskPanel.style.display = "block";
+        newTask.classList.add("active");
+      } else {
+        taskPanel.style.display = "none";
+        newTask.classList.remove("active");
+      }
+    });
 
-    // Create the task info content
+    // Add task content to task item
     const titleElem = document.createElement("h3");
     titleElem.innerText = `${title}`;
     titleElem.style.float = "right";
-    taskInfo.appendChild(titleElem);
+    newTask.appendChild(titleElem);
 
     const subjectElem = document.createElement("h4");
     subjectElem.innerText = `${subject}`;
-    taskInfo.appendChild(subjectElem);
+    newTask.appendChild(subjectElem);
 
+
+    const [year, month, day] = dueDate.split('-');
+    const formattedDueDate = new Date(year, month - 1, day).toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
     const dueDateElem = document.createElement("p");
-    dueDateElem.innerText = `${dueDate}`;
+    dueDateElem.innerText = `${formattedDueDate}`;
     dueDateElem.style.float = "right";
-    taskInfo.appendChild(dueDateElem);
+    newTask.appendChild(dueDateElem);
 
     // Create the task panel element (the description panel)
     const taskPanel = document.createElement("div");
@@ -58,20 +93,14 @@ document.addEventListener("DOMContentLoaded", () => {
     completeBtn.addEventListener("click", () => {
       taskColumnBottom.removeChild(newTask);
     });
+    
     taskPanel.appendChild(completeBtn);
 
-    // Add event listener to task info button to toggle task panel visibility
-    taskInfo.addEventListener("click", () => {
-      if (taskPanel.style.display === "none") {
-        taskPanel.style.display = "block";
-      } else {
-        taskPanel.style.display = "none";
-      }
-    });
-
-    // Add task info and panel to task element
-    newTask.appendChild(taskInfo);
+    // Add task panel to task item
     newTask.appendChild(taskPanel);
+
+    // Add new task to task column's bottom container
+    taskColumnBottom.appendChild(newTask);
 
     // Append the new task to the task column's bottom container
     taskColumnBottom.appendChild(newTask);

@@ -1,54 +1,64 @@
-.task-box {
+.task-item {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   padding: 8px;
-  width: 250px;
-  height: 100px;
-  margin: 16px;
+  width: 10vw;
+  height: auto;
+  margin: 16px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   font-size: 14px;
   position: relative;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
-.task-box.hidden {
-  display: none;
+.task-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.task-box h4 {
+.task-item.active {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.task-info {
+  width: 100%;
+  text-align: left;
+  padding-right: 8px;
+}
+
+.task-info h3 {
   font-size: 16px;
   font-weight: bold;
-  margin-bottom: 8px;
-}
-
-.task-box p {
   margin: 0;
 }
 
-.task-box .task-subject {
-  margin-top: 8px;
-  font-weight: bold;
+.task-info h4 {
+  font-size: 14px;
+  margin: 0;
 }
 
-.task-box .task-due-date {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+.task-info p {
   font-size: 12px;
   color: #777;
+  margin: 0;
 }
 
-.task-box .task-description {
-  display: none;
+.task-panel {
+  margin-top: 8px;
 }
 
-.task-box.active .task-description {
-  display: block;
+.task-panel p {
+  font-size: 12px;
+  margin: 0;
 }
 
-.task-box.active {
-  height: 200px;
+.task-panel button {
+  font-size: 12px;
+  margin-top: 8px;
+  padding: 4px 8px;
 }

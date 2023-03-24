@@ -14,7 +14,8 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif; }
+  font-family: Arial, sans-serif;
+  overflow: hidden; }
 
 header {
   background-color: #333;
@@ -42,14 +43,32 @@ main {
   min-height: 100vh;
   background-color: #f0f0f0; }
 
+.date-container {
+  display: flex;
+  flex-direction: column-reverse;
+  padding-right: 1vw; }
+
+#today-text {
+  font-size: 1.4vw;
+  margin-bottom: 5px;
+  color: #333;
+  margin-bottom: 0; }
+
+#current-date {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-right: .5vw;
+  padding-bottom: .5vw;
+  padding-top: .5vw; }
+
 .add-btn {
   width: auto;
   /* Make the button size dynamic */
-  height: auto;
+  height: 50%;
   color: white;
   padding: 5px 10px;
   background: #087358;
-  margin: 5px;
+  margin-right: auto;
   border: none;
   border-radius: 5px;
   font-size: 1rem; }
@@ -84,57 +103,62 @@ main {
   100% {
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); } }
 
-.task-box {
+.task-item {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   padding: 8px;
-  width: 250px;
-  height: 100px;
-  margin: 16px;
+  width: 10vw;
+  height: auto;
+  margin: 16px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   font-size: 14px;
-  position: relative; }
+  position: relative;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out; }
 
-.task-box.hidden {
-  display: none; }
+.task-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); }
 
-.task-box h4 {
+.task-item.active {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); }
+
+.task-info {
+  width: 100%;
+  text-align: left;
+  padding-right: 8px; }
+
+.task-info h3 {
   font-size: 16px;
   font-weight: bold;
-  margin-bottom: 8px; }
-
-.task-box p {
   margin: 0; }
 
-.task-box .task-subject {
-  margin-top: 8px;
-  font-weight: bold; }
-
-.task-box .task-due-date {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+.task-info p {
   font-size: 12px;
-  color: #777; }
+  color: #777;
+  margin: 0; }
 
-.task-box .task-description {
-  display: none; }
+.task-panel {
+  margin-top: 8px; }
 
-.task-box.active .task-description {
-  display: block; }
+.task-panel p {
+  font-size: 12px;
+  margin: 0; }
 
-.task-box.active {
-  height: 200px; }
+.task-panel button {
+  font-size: 12px;
+  margin-top: 8px;
+  padding: 4px 8px; }
 
 .input-panel {
-  width: 20vw;
+  width: 30vw;
   min-width: 360px;
   min-height: 360px;
-  height: 20vw;
+  height: 30vw;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -150,12 +174,46 @@ main {
 .input-panel.hidden {
   display: none; }
 
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  display: none; }
+
 .input-panel-section {
   width: 100%;
+  height: 65%;
   display: flex;
   flex-wrap: wrap;
-  align-items: stretch;
-  margin-bottom: 1.051vw; }
+  align-items: flex-start;
+  justify-content: space-between; }
+
+.input-panel-bottom {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1.5rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0 0.5rem; }
+
+.input-panel-bottom button {
+  background-color: #087358;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer; }
+
+.input-panel-bottom button:hover {
+  background-color: #064c39; }
 
 .input-panel-section > * {
   flex-basis: 50%;
@@ -177,14 +235,28 @@ main {
   border-radius: 0.263vw;
   resize: none; }
 
+.form-group > textarea {
+  height: 120px; }
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1vw; }
 
-.form-group > textarea {
-  height: calc(100% - 0.526vw);
+.task-titles {
+  font-size: 1vw;
+  color: gray;
+  margin-bottom: .15vw; }
+
+#input-panel-section-top-right {
+  height: 30%; }
+
+#input-panel-section-bottom-right {
+  height: 70%; }
+
+#input-panel-section-bottom-right .form-group > textarea {
+  height: 10vw;
   font-family: sans-serif; }
 
 #submit-btn {
@@ -248,12 +320,17 @@ main {
 .column-tasks {
   width: 70%; }
 
+.column-top-right {
+  display: flex;
+  justify-content: space-between; }
+
 .column-top {
   display: flex;
   flex-direction: column;
   font-size: 1.3vw;
   font-weight: bold;
-  margin: 5px; }
+  margin: 5px;
+  width: 50%; }
 
 .column-bottom {
   height: 90%; }

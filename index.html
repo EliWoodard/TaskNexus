@@ -27,13 +27,20 @@
           </div>
         </div>
         <div class="column-tasks column">
-          <div class="column-top">
-            <p>Tasks</p>
+          <div class="column-top-right">
+            <div class="column-top">
+              <p>Tasks</p>
+              <button class="add-btn">+ New task</button>
+            </div>
+            <div class="date-container">
+              <p id="current-date"></p>
+              <p id="today-text">Today</p>
+            </div>
           </div>
-          <button class="add-btn">+ New task</button>
           <div class="column-bottom">
           </div>
         </div>
+
       </div>
     </div>
   </main>
@@ -44,26 +51,26 @@
       <button id="close-btn">X</button>
     </div>
     <div class="input-panel-section">
-      <div class="input-panel-section-top-left">
-        <h3>Subject:</h3>
+      <div id="input-panel-section-top-left">
+        <p class="task-titles">Subject</p>
         <div class="form-group">
           <input type="text" id="subject" placeholder="Enter subject">
         </div>
       </div>
-      <div class="input-panel-section-top-right">
-        <h3>Title:</h3>
+      <div id="input-panel-section-top-right">
+        <p class = "task-titles">Title</p>
         <div class="form-group">
           <input type="text" id="title" placeholder="Enter title">
         </div>
       </div>
-      <div class="input-panel-section-bottom-left">
-        <h3>Due Date:</h3>
+      <div id="input-panel-section-bottom-left">
+        <p class="task-titles">Due Date</p>
         <div class="form-group">
           <input type="date" id="due-date">
         </div>
       </div>
-      <div class="input-panel-section-bottom-right">
-        <h3>Description:</h3>
+      <div id="input-panel-section-bottom-right">
+        <p class="task-titles">Description</p>
         <div class="form-group">
           <textarea id="description" placeholder="Enter task description"></textarea>
         </div>
